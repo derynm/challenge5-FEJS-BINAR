@@ -51,6 +51,11 @@
     
 }
 
+.comp-input label {
+    color: #3C3C3C;
+    font-size:12px;
+}
+
 .comp-input button {
     margin-top: 22px;
 }
@@ -63,6 +68,10 @@
 .card-container {
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1167px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .box {

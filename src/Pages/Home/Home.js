@@ -4,7 +4,6 @@ import "./home.css";
 import mobil from "../../Assets/Img/img_car.png";
 import { FooterDef } from "../../Assets/Components/Footer/FooterDef";
 import DatePicker from "react-datepicker";
-import moment from "moment";
 import { CardDef } from "../../Assets/Components/Card/CardDef";
 import { CardDesc } from "../../Assets/Components/CardDesc/CardDesc";
 
@@ -14,6 +13,7 @@ export const Home = () => {
   const [dataMobil, setDataMobil] = useState([]);
   const [page, setPage] = useState("1");
   const [idCar, setIdCar] = useState(null);
+  const [sopir, setSopir] = useState(null);
 
   useEffect(() => {
     var axios = require("axios");
@@ -33,18 +33,22 @@ export const Home = () => {
       });
   }, []);
 
-  const rubahFormat = (data) => {
-    if (data !== null) {
-      let dataFormat = moment(data).format("yyyy,MM,DD");
-      return dataFormat;
+  //cek pakai sopir
+  const cekSopir = (e) => {
+    if (e.target.value === "Dengan Sopir") {
+      setSopir(true);
+    } else if (e.target.value === "Tanpa Sopir") {
+      setSopir(false);
     }
   };
 
-  const handleMobil = (data) => {
+  //handle data dan summon card
+  const handleMobil = (data, sopir) => {
     let dataValue = data;
+    let dataSupir = sopir;
     return dataValue
-      .filter((value) => value.status === false)
-      .map((value,index) => {
+      .filter((value) => value.status === dataSupir)
+      .map((value, index) => {
         return (
           <CardDef
             image={value.image}
@@ -59,6 +63,7 @@ export const Home = () => {
       });
   };
 
+  //pindah page di taruh button
   const changePage = (e, page) => {
     e.preventDefault();
     setPage(page);
@@ -98,8 +103,14 @@ export const Home = () => {
               >
                 <div className="comp-input">
                   <label>Tipe Driver</label>
-                  <select required className="box">
-                    <option value="" disabled selected hidden>
+                  <select
+                    required
+                    className="box"
+                    onChange={(e) => {
+                      cekSopir(e);
+                    }}
+                  >
+                    <option disabled selected hidden>
                       Pilih Tipe Driver
                     </option>
                     <option key={1} value={"Dengan Sopir"}>
@@ -120,7 +131,7 @@ export const Home = () => {
                   />
                 </div>
                 <div className="comp-input">
-                  <label>dasd</label>
+                  <label>Waktu Jemput/Ambil</label>
                   <DatePicker
                     className="box"
                     selected={jam}
@@ -161,7 +172,13 @@ export const Home = () => {
                 <div className="comp-input">
                   <h6>Pencarianmu</h6>
                   <label>Tipe Driver</label>
-                  <select required className="box">
+                  <select
+                    required
+                    className="box"
+                    onChange={(e) => {
+                      cekSopir(e);
+                    }}
+                  >
                     <option value="" disabled selected hidden>
                       Pilih Tipe Driver
                     </option>
@@ -183,7 +200,7 @@ export const Home = () => {
                   />
                 </div>
                 <div className="comp-input input-page2">
-                  <label>dasd</label>
+                  <label>Waktu Jemput/Ambil</label>
                   <DatePicker
                     className="box"
                     selected={jam}
@@ -211,12 +228,14 @@ export const Home = () => {
           </div>
           <div id="section-03">
             <div className="container-xl">
-              <div className="card-container">{handleMobil(dataMobil)}</div>
+              <div className="card-container">
+                {handleMobil(dataMobil, sopir)}
+              </div>
             </div>
           </div>
         </div>
       ) : null}
-        {console.log(idCar)}
+      {/* {console.log(idCar)} */}
       {page === "3" ? (
         <div>
           <div id="parrent-hero3">
@@ -251,7 +270,7 @@ export const Home = () => {
                   />
                 </div>
                 <div className="comp-input input-page2">
-                  <label>dasd</label>
+                  <label>Waktu Jemput/Ambil</label>
                   <DatePicker
                     className="box"
                     selected={jam}
@@ -277,7 +296,9 @@ export const Home = () => {
             </div>
           </div>
           <div id="section-03">
-            <div className="container-xl"><CardDesc/></div>
+            <div className="container-xl">
+              <CardDesc />
+            </div>
           </div>
         </div>
       ) : null}
