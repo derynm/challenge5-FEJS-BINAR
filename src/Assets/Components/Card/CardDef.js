@@ -23,7 +23,7 @@ export const CardDef = (props) => {
             <li className="dua">Manual</li>
             <li className="tiga">Tahun 2020</li>
           </ul>
-          <a href="#" className="btn btn-success btn-edit-card">
+          <a href="#" className="btn btn-success btn-edit-card" onClick={props.nextPage}>
             Pilih Mobil
           </a>
         </div>
