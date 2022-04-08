@@ -20,7 +20,7 @@ export const CardPay = (props) => {
             <li className="tiga-pay">Tahun 2020</li>
           </ul>
           <div className="total-pay">
-          <p className="price">Total</p>
+          <p>Total</p>
           <p className="price">Rp.{props.pricePay} / hari</p>
           </div>
           <a className="btn btn-success btn-edit-card">Pilih Mobil</a>

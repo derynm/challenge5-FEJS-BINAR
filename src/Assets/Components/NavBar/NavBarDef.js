@@ -27,22 +27,22 @@ export const NavBarDef = (props) => {
             >
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                  <a className="nav-link" href="#section-2">
+                  <a className="nav-link" href="#">
                     Our Service
                   </a>
                 </li>
                 <div className="nav-item">
-                  <a className="nav-link" href="#section-3">
+                  <a className="nav-link" href="#">
                     Why Us
                   </a>
                 </div>
                 <div className="nav-item">
-                  <a className="nav-link" href="#section-4">
+                  <a className="nav-link" href="#">
                     Testimoni
                   </a>
                 </div>
                 <div className="nav-item">
-                  <a className="nav-link" href="#section-6">
+                  <a className="nav-link" href="#">
                     FAQ
                   </a>
                 </div>
