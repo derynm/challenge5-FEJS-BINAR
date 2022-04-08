@@ -4,6 +4,7 @@ import { Layout } from './Pages/Layout';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "react-datepicker/dist/react-datepicker.css";
+import 'bootstrap/dist/js/bootstrap.min.js'
 import './Assets/CSS/global.css';
 
 ReactDOM.render(

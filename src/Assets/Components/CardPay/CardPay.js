@@ -4,7 +4,7 @@ import "./cardpay.css";
 export const CardPay = (props) => {
   return (
     <div>
-      <div className="card card-edit" style={{ width: "405px" }}>
+      <div className="card card-edit-pay">
         <img
           src={props.imagePay}
           className="card-img-top"
@@ -14,7 +14,7 @@ export const CardPay = (props) => {
         <div className="card-body" style={{ padding: "1.5rem" }}>
           <p className="car-name">{props.carNamePay}</p>
 
-          <ul className="list-feature">
+          <ul className="list-feature-pay">
             <li className="satu-pay">4 orang</li>
             <li className="dua-pay">Manual</li>
             <li className="tiga-pay">Tahun 2020</li>

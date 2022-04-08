@@ -36,7 +36,7 @@ export const Home = () => {
   }, []);
 
   //cek pakai sopir atau tidak + cek validasi di page mana
-  const cekSopir = (e,page) => {
+  const cekSopir = (e, page) => {
     let valuePage = page;
     if (valuePage === "1") {
       if (e.target.value === "Dengan Sopir") {
@@ -47,7 +47,6 @@ export const Home = () => {
     } else if (valuePage === "2") {
       setStatsSopir(e.target.value);
     }
-    
   };
 
   //ganti stats supir khusu di page 2
@@ -147,10 +146,10 @@ export const Home = () => {
                     required
                     className="box"
                     onChange={(e) => {
-                      cekSopir(e,page);
+                      cekSopir(e, page);
                     }}
                   >
-                    <option disabled selected hidden>
+                    <option value="" disabled selected hidden>
                       Pilih Tipe Driver
                     </option>
                     <option key={1} value={"Dengan Sopir"}>
@@ -222,7 +221,7 @@ export const Home = () => {
                     required
                     className="box"
                     onChange={(e) => {
-                      cekSopir(e,page);
+                      cekSopir(e, page);
                     }}
                   >
                     <option value="" disabled selected hidden>
@@ -342,7 +341,15 @@ export const Home = () => {
             </div>
           </div>
           <div id="section-03">
-            <div className="container-xl">{deskMobil(idCar, dataMobil)}</div>
+            <div className="container-xl">
+              
+                {deskMobil(idCar, dataMobil)}
+                <div className="desc-btn">
+                <button className="btn btn-success btn-ijo">
+                  Lanjutkan Pembayaran
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       ) : null}
