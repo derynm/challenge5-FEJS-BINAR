@@ -6,6 +6,7 @@ import { FooterDef } from "../../Assets/Components/Footer/FooterDef";
 import DatePicker from "react-datepicker";
 import { CardDef } from "../../Assets/Components/Card/CardDef";
 import { CardDesc } from "../../Assets/Components/CardDesc/CardDesc";
+import { CardPay } from "../../Assets/Components/CardPay/CardPay";
 
 export const Home = () => {
   const [tanggal, setTanggal] = useState(new Date());
@@ -14,6 +15,7 @@ export const Home = () => {
   const [page, setPage] = useState("1");
   const [idCar, setIdCar] = useState(null);
   const [sopir, setSopir] = useState(null);
+  const [statsSopir, setStatsSopir] = useState("");
 
   useEffect(() => {
     var axios = require("axios");
@@ -33,11 +35,28 @@ export const Home = () => {
       });
   }, []);
 
-  //cek pakai sopir
-  const cekSopir = (e) => {
-    if (e.target.value === "Dengan Sopir") {
+  //cek pakai sopir atau tidak + cek validasi di page mana
+  const cekSopir = (e,page) => {
+    let valuePage = page;
+    if (valuePage === "1") {
+      if (e.target.value === "Dengan Sopir") {
+        setSopir(true);
+      } else if (e.target.value === "Tanpa Sopir") {
+        setSopir(false);
+      }
+    } else if (valuePage === "2") {
+      setStatsSopir(e.target.value);
+    }
+    
+  };
+
+  //ganti stats supir khusu di page 2
+  const gantiStatsSopir = (e, stats) => {
+    e.preventDefault();
+    let valueStats = stats;
+    if (valueStats === "Dengan Sopir") {
       setSopir(true);
-    } else if (e.target.value === "Tanpa Sopir") {
+    } else if (valueStats === "Tanpa Sopir") {
       setSopir(false);
     }
   };
@@ -56,6 +75,7 @@ export const Home = () => {
             price={value.price}
             nextPage={(e) => {
               changePage(e, "3");
+              // set id untuk dipanggil di paga deskripsi
               setIdCar(value.id);
             }}
           />
@@ -69,9 +89,29 @@ export const Home = () => {
     setPage(page);
   };
 
+  const deskMobil = (id, data) => {
+    let dataValue = data;
+    let idValue = id;
+    let dataMobil = dataValue.find((value) => value.id === idValue);
+    return (
+      <div className="container-desc">
+        <CardDesc />
+        <CardPay
+          imagePay={dataMobil.image}
+          carNamePay={dataMobil.name}
+          pricePay={dataMobil.price}
+        />
+      </div>
+    );
+  };
+
   return (
     <div>
-      <NavBarDef />
+      <NavBarDef
+        toPageOne={(e) => {
+          changePage(e, "1");
+        }}
+      />
       {page === "1" ? (
         <div>
           <div id="parrent-hero">
@@ -107,7 +147,7 @@ export const Home = () => {
                     required
                     className="box"
                     onChange={(e) => {
-                      cekSopir(e);
+                      cekSopir(e,page);
                     }}
                   >
                     <option disabled selected hidden>
@@ -168,7 +208,13 @@ export const Home = () => {
           </div>
           <div id="section-02">
             <div className="container-xl">
-              <form id="form-cari" className="page-2">
+              <form
+                id="form-cari"
+                className="page-2"
+                onSubmit={(e) => {
+                  gantiStatsSopir(e, statsSopir);
+                }}
+              >
                 <div className="comp-input">
                   <h6>Pencarianmu</h6>
                   <label>Tipe Driver</label>
@@ -176,7 +222,7 @@ export const Home = () => {
                     required
                     className="box"
                     onChange={(e) => {
-                      cekSopir(e);
+                      cekSopir(e,page);
                     }}
                   >
                     <option value="" disabled selected hidden>
@@ -235,7 +281,7 @@ export const Home = () => {
           </div>
         </div>
       ) : null}
-      {/* {console.log(idCar)} */}
+
       {page === "3" ? (
         <div>
           <div id="parrent-hero3">
@@ -296,9 +342,7 @@ export const Home = () => {
             </div>
           </div>
           <div id="section-03">
-            <div className="container-xl">
-              <CardDesc />
-            </div>
+            <div className="container-xl">{deskMobil(idCar, dataMobil)}</div>
           </div>
         </div>
       ) : null}

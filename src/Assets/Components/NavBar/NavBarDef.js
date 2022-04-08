@@ -1,12 +1,12 @@
 import React from "react";
 import './navbar.css'
 
-export const NavBarDef = () => {
+export const NavBarDef = (props) => {
   return (
     <div className="nav-edit">
       <nav className="navbar navbar-expand-lg navbar-light">
         <div className="container-xl navbar-padding-top">
-          <a className="navbar-brand" href="#">
+          <a className="navbar-brand" href="#" onClick={props.toPageOne}>
             LOGO
           </a>
           <div className="nav-custom">
