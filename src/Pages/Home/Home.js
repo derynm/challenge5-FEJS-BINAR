@@ -7,6 +7,9 @@ import DatePicker from "react-datepicker";
 import { CardDef } from "../../Assets/Components/Card/CardDef";
 import { CardDesc } from "../../Assets/Components/CardDesc/CardDesc";
 import { CardPay } from "../../Assets/Components/CardPay/CardPay";
+import kalender from "../../Assets/Img/fi_calendar.png";
+import waktu from "../../Assets/Img/fi_clock.png";
+import penumpang from "../../Assets/Img/fi_users.png";
 
 export const Home = () => {
   const [tanggal, setTanggal] = useState(new Date());
@@ -142,52 +145,62 @@ export const Home = () => {
               >
                 <div className="comp-input">
                   <label>Tipe Driver</label>
-                  <select
-                    required
-                    className="box"
-                    onChange={(e) => {
-                      cekSopir(e, page);
-                    }}
-                  >
-                    <option value="" disabled selected hidden>
-                      Pilih Tipe Driver
-                    </option>
-                    <option key={1} value={"Dengan Sopir"}>
-                      Dengan Sopir
-                    </option>
-                    <option key={2} value={"Tanpa Sopir"}>
-                      Tanpa Sopir (Lepas Kunci)
-                    </option>
-                  </select>
+                  <div className="input-icon option-edit">
+                    <select
+                      required
+                      className="box box-edit"
+                      onChange={(e) => {
+                        cekSopir(e, page);
+                      }}
+                    >
+                      <option value="" disabled selected hidden>
+                        Pilih Tipe Driver
+                      </option>
+                      <option key={1} value={"Dengan Sopir"}>
+                        Dengan Sopir
+                      </option>
+                      <option key={2} value={"Tanpa Sopir"}>
+                        Tanpa Sopir (Lepas Kunci)
+                      </option>
+                    </select>
+                  </div>
                 </div>
                 <div className="comp-input">
                   <label>Tanggal</label>
-
-                  <DatePicker
-                    className="box"
-                    selected={tanggal}
-                    onChange={(date) => setTanggal(date)}
-                  />
+                  <div className="input-icon">
+                    <DatePicker
+                      className="box"
+                      selected={tanggal}
+                      onChange={(date) => setTanggal(date)}
+                    />
+                    <img src={kalender} />
+                  </div>
                 </div>
                 <div className="comp-input">
                   <label>Waktu Jemput/Ambil</label>
-                  <DatePicker
-                    className="box"
-                    selected={jam}
-                    onChange={(date) => setJam(date)}
-                    showTimeSelect
-                    showTimeSelectOnly
-                    timeIntervals={15}
-                    timeCaption="Time"
-                    dateFormat="h:mm aa"
-                  />
+                  <div className="input-icon">
+                    <DatePicker
+                      className="box"
+                      selected={jam}
+                      onChange={(date) => setJam(date)}
+                      showTimeSelect
+                      showTimeSelectOnly
+                      timeIntervals={15}
+                      timeCaption="Time"
+                      dateFormat="h:mm aa"
+                    />
+                    <img src={waktu} />
+                  </div>
                 </div>
                 <div className="comp-input">
                   <label>Jumlah Penumpang (optional)</label>
-                  <input
-                    placeholder="Jumlah Penumpang"
-                    className="box jml-penumpang"
-                  />
+                  <div className="input-icon">
+                    <input
+                      placeholder="Jumlah Penumpang"
+                      className="box jml-penumpang"
+                    />
+                    <img src={penumpang} />
+                  </div>
                 </div>
                 <div className="comp-input">
                   <button className="btn btn-success btn-ijo">
@@ -217,53 +230,64 @@ export const Home = () => {
                 <div className="comp-input">
                   <h6>Pencarianmu</h6>
                   <label>Tipe Driver</label>
-                  <select
-                    required
-                    className="box"
-                    onChange={(e) => {
-                      cekSopir(e, page);
-                    }}
-                  >
-                    <option value="" disabled selected hidden>
-                      Pilih Tipe Driver
-                    </option>
-                    <option key={1} value={"Dengan Sopir"}>
-                      Dengan Sopir
-                    </option>
-                    <option key={2} value={"Tanpa Sopir"}>
-                      Tanpa Sopir (Lepas Kunci)
-                    </option>
-                  </select>
+                  <div className="input-icon">
+                    <select
+                      required
+                      className="box option-edit"
+                      onChange={(e) => {
+                        cekSopir(e, page);
+                      }}
+                    >
+                      <option value="" disabled selected hidden>
+                        Pilih Tipe Driver
+                      </option>
+                      <option key={1} value={"Dengan Sopir"}>
+                        Dengan Sopir
+                      </option>
+                      <option key={2} value={"Tanpa Sopir"}>
+                        Tanpa Sopir (Lepas Kunci)
+                      </option>
+                    </select>
+                  </div>
                 </div>
                 <div className="comp-input input-page2">
                   <label>Tanggal</label>
 
-                  <DatePicker
-                    className="box"
-                    selected={tanggal}
-                    onChange={(date) => setTanggal(date)}
-                  />
+                  <div className="input-icon">
+                    <DatePicker
+                      className="box"
+                      selected={tanggal}
+                      onChange={(date) => setTanggal(date)}
+                    />
+                    <img src={kalender} />
+                  </div>
                 </div>
                 <div className="comp-input input-page2">
                   <label>Waktu Jemput/Ambil</label>
-                  <DatePicker
-                    className="box"
-                    selected={jam}
-                    onChange={(date) => setJam(date)}
-                    showTimeSelect
-                    showTimeSelectOnly
-                    timeIntervals={15}
-                    timeCaption="Time"
-                    dateFormat="h:mm aa"
-                  />
+                  <div className="input-icon">
+                    <DatePicker
+                      className="box"
+                      selected={jam}
+                      onChange={(date) => setJam(date)}
+                      showTimeSelect
+                      showTimeSelectOnly
+                      timeIntervals={15}
+                      timeCaption="Time"
+                      dateFormat="h:mm aa"
+                    />
+                    <img src={waktu} />
+                  </div>
                 </div>
                 <div className="comp-input input-page2">
                   <label>Jumlah Penumpang (optional)</label>
-                  <input
-                    placeholder="Jumlah Penumpang"
-                    type="number"
-                    className="box"
-                  />
+                  <div className="input-icon">
+                    <input
+                      placeholder="Jumlah Penumpang"
+                      type="number"
+                      className="box"
+                    />
+                    <img src={penumpang} />
+                  </div>
                 </div>
                 <div className="comp-input input-page2">
                   <button className="btn btn-outline-primary">Edit</button>
@@ -292,7 +316,7 @@ export const Home = () => {
                 <div className="comp-input">
                   <h6>Pencarianmu</h6>
                   <label>Tipe Driver</label>
-                  <select required className="box" disabled>
+                  <select required className="opt-dis" disabled>
                     <option value="" disabled selected hidden>
                       Pilih Tipe Driver
                     </option>
@@ -306,45 +330,52 @@ export const Home = () => {
                 </div>
                 <div className="comp-input input-page2">
                   <label>Tanggal</label>
-
-                  <DatePicker
-                    className="box"
-                    selected={tanggal}
-                    onChange={(date) => setTanggal(date)}
-                    disabled
-                  />
+                  <div className="input-icon disable-input">
+                    <DatePicker
+                      className="box-dis"
+                      selected={tanggal}
+                      onChange={(date) => setTanggal(date)}
+                      disabled
+                    />
+                    <img src={kalender} />
+                  </div>
                 </div>
                 <div className="comp-input input-page2">
                   <label>Waktu Jemput/Ambil</label>
-                  <DatePicker
-                    className="box"
-                    selected={jam}
-                    onChange={(date) => setJam(date)}
-                    showTimeSelect
-                    showTimeSelectOnly
-                    timeIntervals={15}
-                    timeCaption="Time"
-                    dateFormat="h:mm aa"
-                    disabled
-                  />
+                  <div className="input-icon disable-input">
+                    <DatePicker
+                      className="box-dis"
+                      selected={jam}
+                      onChange={(date) => setJam(date)}
+                      showTimeSelect
+                      showTimeSelectOnly
+                      timeIntervals={15}
+                      timeCaption="Time"
+                      dateFormat="h:mm aa"
+                      disabled
+                    />
+                    <img src={waktu} />
+                  </div>
                 </div>
                 <div className="comp-input input-page2">
                   <label>Jumlah Penumpang (optional)</label>
-                  <input
-                    placeholder="Jumlah Penumpang"
-                    type="number"
-                    className="box"
-                    disabled
-                  />
+                  <div className="input-icon disable-input">
+                    <input
+                      placeholder="Jumlah Penumpang"
+                      type="number"
+                      className="box-dis"
+                      disabled
+                    />
+                    <img src={penumpang} />
+                  </div>
                 </div>
               </form>
             </div>
           </div>
           <div id="section-03">
             <div className="container-xl">
-              
-                {deskMobil(idCar, dataMobil)}
-                <div className="desc-btn">
+              {deskMobil(idCar, dataMobil)}
+              <div className="desc-btn">
                 <button className="btn btn-success btn-ijo">
                   Lanjutkan Pembayaran
                 </button>

@@ -75,17 +75,34 @@
 }
 
 .box {
-    width: 210px;
+    width: 190px;
     height: 36px;
     padding: 2px 10px;
-    border: 1px solid #3C3C3C;
-    border-radius: 2px;
+    border: none;
     background: white;
     color: #3C3C3C;
     
 }
 
+.box-edit {
+    width: 230px !important;
+}  
 
+.input-icon {
+    border: 1px solid #3C3C3C;
+    display: flex;
+    border-radius: 2px;
+}
+
+.input-icon img {
+    height: 20px;
+    margin-top: 8px;
+    padding-right: 8px;
+}
+
+.option-edit {
+    width: 240px;
+}
 #parrent-hero2 {
     height: 200px;
     width: 100%;
@@ -128,3 +145,24 @@
     justify-content: center;
 }
 
+.box-dis {
+    width: 210px;
+    height: 36px;
+    padding: 2px 10px;
+    border: none;
+    border-radius: 2px;
+    background-color: #D0D0D0;
+}
+
+.opt-dis {
+    width: 210px;
+    height: 36px;
+    padding: 2px 10px;
+    border: 1px solid #3C3C3C;
+    border-radius: 2px;
+    background-color: #D0D0D0;
+}
+
+.disable-input {
+    background: #D0D0D0 !important;
+}
