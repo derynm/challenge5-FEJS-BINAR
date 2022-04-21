@@ -1,17 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Layout } from './Pages/Layout';
-import reportWebVitals from './reportWebVitals';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Layout } from "./Pages/Layout";
+import reportWebVitals from "./reportWebVitals";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "react-datepicker/dist/react-datepicker.css";
-import 'bootstrap/dist/js/bootstrap.min.js'
-import './Assets/CSS/global.css';
+import "bootstrap/dist/js/bootstrap.min.js";
+import "./Assets/CSS/global.css";
+import { Provider } from "react-redux";
+
+import store from "./Redux/Store/Store";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Layout />
+    <Provider store={store}>
+      <Layout />
+    </Provider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

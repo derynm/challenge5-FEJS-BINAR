@@ -5,9 +5,9 @@ import { Router } from "../Routes/Router";
 export const Layout = () => {
   return (
     <div>
-      <BrowserRouter>
-        <Router/>
-      </BrowserRouter>
+        <BrowserRouter>
+          <Router />
+        </BrowserRouter>
     </div>
   );
 };

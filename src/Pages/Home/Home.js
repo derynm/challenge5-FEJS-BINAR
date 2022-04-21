@@ -10,33 +10,42 @@ import { CardPay } from "../../Assets/Components/CardPay/CardPay";
 import kalender from "../../Assets/Img/fi_calendar.png";
 import waktu from "../../Assets/Img/fi_clock.png";
 import penumpang from "../../Assets/Img/fi_users.png";
+import { connect } from "react-redux";
+import { fetchCar } from "../../Redux/Action/HomeAction";
 
-export const Home = () => {
+const Home = (props) => {
   const [tanggal, setTanggal] = useState(new Date());
   const [jam, setJam] = useState(new Date());
-  const [dataMobil, setDataMobil] = useState([]);
+ 
   const [page, setPage] = useState("1");
   const [idCar, setIdCar] = useState(null);
   const [sopir, setSopir] = useState(null);
   const [statsSopir, setStatsSopir] = useState("");
 
+  // useEffect(() => {
+  //   var axios = require("axios");
+
+  //   var config = {
+  //     method: "get",
+  //     url: "https://rent-cars-api.herokuapp.com/admin/car",
+  //     headers: {},
+  //   };
+
+  //   axios(config)
+  //     .then(function (response) {
+  //       setprops.carData(response.data);
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // }, []);
+
   useEffect(() => {
-    var axios = require("axios");
-
-    var config = {
-      method: "get",
-      url: "https://rent-cars-api.herokuapp.com/admin/car",
-      headers: {},
-    };
-
-    axios(config)
-      .then(function (response) {
-        setDataMobil(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    props.getApi();
   }, []);
+
+
+  
 
   //cek pakai sopir atau tidak + cek validasi di page mana
   const cekSopir = (e, page) => {
@@ -109,6 +118,7 @@ export const Home = () => {
 
   return (
     <div>
+    {console.log(props.carData)}
       <NavBarDef
         toPageOne={(e) => {
           changePage(e, "1");
@@ -298,7 +308,7 @@ export const Home = () => {
           <div id="section-03">
             <div className="container-xl">
               <div className="card-container">
-                {handleMobil(dataMobil, sopir)}
+                {handleMobil(props.carData, sopir)}
               </div>
             </div>
           </div>
@@ -374,7 +384,7 @@ export const Home = () => {
           </div>
           <div id="section-03">
             <div className="container-xl">
-              {deskMobil(idCar, dataMobil)}
+              {deskMobil(idCar, props.carData)}
               <div className="desc-btn">
                 <button className="btn btn-success btn-ijo">
                   Lanjutkan Pembayaran
@@ -388,3 +398,18 @@ export const Home = () => {
     </div>
   );
 };
+
+const mapStateToProps = (state) => {
+  return {
+    carData: state.home.car_data,
+  };
+};
+
+//mentrigger reducer
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getApi: () => dispatch(fetchCar()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
