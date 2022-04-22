@@ -38,3 +38,7 @@
     border-color: #5CB85F !important;
     border-radius: 2px !important;
 }
+
+.card-img-top {
+    max-height: 230px;
+}

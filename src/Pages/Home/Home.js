@@ -11,14 +11,14 @@ import kalender from "../../Assets/Img/fi_calendar.png";
 import waktu from "../../Assets/Img/fi_clock.png";
 import penumpang from "../../Assets/Img/fi_users.png";
 import { connect } from "react-redux";
-import { fetchCar } from "../../Redux/Action/HomeAction";
+import { fetchCar,getIdCar } from "../../Redux/Action/HomeAction";
 
 const Home = (props) => {
   const [tanggal, setTanggal] = useState(new Date());
   const [jam, setJam] = useState(new Date());
  
   const [page, setPage] = useState("1");
-  const [idCar, setIdCar] = useState(null);
+  
   const [sopir, setSopir] = useState(null);
   const [statsSopir, setStatsSopir] = useState("");
 
@@ -33,7 +33,7 @@ const Home = (props) => {
 
   //   axios(config)
   //     .then(function (response) {
-  //       setprops.carData(response.data);
+  //       setDataMobil(response.data);
   //     })
   //     .catch(function (error) {
   //       console.log(error);
@@ -86,8 +86,8 @@ const Home = (props) => {
             price={value.price}
             nextPage={(e) => {
               changePage(e, "3");
-              // set id untuk dipanggil di paga deskripsi
-              setIdCar(value.id);
+              // set id pada global state/redux untuk dipanggil di page deskripsi
+              props.setID(value.id);
             }}
           />
         );
@@ -118,7 +118,8 @@ const Home = (props) => {
 
   return (
     <div>
-    {console.log(props.carData)}
+    {console.log(props.carIdGlobal)}
+
       <NavBarDef
         toPageOne={(e) => {
           changePage(e, "1");
@@ -384,7 +385,7 @@ const Home = (props) => {
           </div>
           <div id="section-03">
             <div className="container-xl">
-              {deskMobil(idCar, props.carData)}
+              {deskMobil(props.carIdGlobal, props.carData)}
               <div className="desc-btn">
                 <button className="btn btn-success btn-ijo">
                   Lanjutkan Pembayaran
@@ -402,6 +403,7 @@ const Home = (props) => {
 const mapStateToProps = (state) => {
   return {
     carData: state.home.car_data,
+    carIdGlobal: state.home.car_id
   };
 };
 
@@ -409,6 +411,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getApi: () => dispatch(fetchCar()),
+    setID: (id) => dispatch(getIdCar(id))
   };
 };
 

@@ -1,4 +1,4 @@
-import { FETCH_DATA } from "./types";
+import { FETCH_DATA, GET_ID } from "./types";
 
 const axios = require("axios");
 
@@ -23,4 +23,13 @@ function fetchCar() {
   };
 }
 
-export { fetchCar };
+function getIdCar(id) {
+  return (dispatch) => {
+    dispatch({
+      type: GET_ID,
+      carID: id,
+    });
+  };
+}
+
+export { fetchCar, getIdCar };
