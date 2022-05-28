@@ -4,7 +4,7 @@ const axios = require("axios");
 
 var config = {
   method: "get",
-  url: "https://rent-cars-api.herokuapp.com/admin/car",
+  url: "https://rent-car-appx.herokuapp.com/admin/car",
   headers: {},
 };
 
