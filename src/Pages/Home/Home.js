@@ -132,7 +132,7 @@ const Home = (props) => {
               <div className="hero">
                 <div className="row">
                   <div className="col col-lg-6 col-sm-12 col-12 hero-content1">
-                    <h1>Sewa & Rental Mobil Terbaik di kawasan (Lokasimu)</h1>
+                    <h1>Sewa & Rental Mobil Terbaik di kawasan (Lokasimu) development</h1>
                     <p>
                       Selamat datang di Binar Car Rental. Kami menyediakan mobil
                       kualitas terbaik dengan harga terjangkau. Selalu siap
